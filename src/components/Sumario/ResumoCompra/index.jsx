@@ -2,15 +2,19 @@ import React from "react";
 import Titulo from "@/components/Titulo";
 import ValorFormatado from "@/components/ValorFormatado";
 import { formatadorMoeda } from "@/utils/formatadorMoeda";
+import { useCarrinhoContext } from "@/hooks/useCarrinhoContext";
 
-const ResumoCompra = ({ valorTotalCarrinho, quantidadeProdutos }) => {
+const ResumoCompra = () => {
+  const { carrinho, somaValorTotalCarrinho } = useCarrinhoContext();
+  const valorTotalCarrinho = somaValorTotalCarrinho();
+
   return (
     <div className="bg-black p-4">
       <Titulo element="h5" className="text-center fw-bold">
         Sumário
       </Titulo>
       <div className="d-flex flex-row justify-content-between">
-        <p className="m-0">{quantidadeProdutos} produtos</p>
+        <p className="m-0">{carrinho.length} produtos</p>
         <span>{formatadorMoeda(valorTotalCarrinho)}</span>
       </div>
       <div className="divisor__verde my-3" />

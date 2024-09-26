@@ -1,16 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import BarraNavegacao from "@/components/BarraNavegacao";
 import Titulo from "@/components/Titulo";
 import Sumario from "@/components/Sumario";
 import ListaProdutosCarrinho from "@/components/ListaProdutosCarrinho";
 import BannerCarrinho from "@/components/BannerCarrinho";
-import { CarrinhoContext } from "@/context/CarrinhoContext";
-import { useCarrinhoContext } from "../hooks/useCarrinhoContext";
 
 const Carrinho = () => {
-  const { carrinho, somaValorTotalCarrinho } = useCarrinhoContext();
-  const valorTotalCarrinho = somaValorTotalCarrinho();
-
   return (
     <>
       <BarraNavegacao />
@@ -27,10 +22,7 @@ const Carrinho = () => {
               </Titulo>
               <ListaProdutosCarrinho />
             </div>
-            <Sumario
-              valorTotalCarrinho={valorTotalCarrinho}
-              quantidadeProdutos={carrinho.length}
-            />
+            <Sumario />
           </div>
         </section>
       </main>
