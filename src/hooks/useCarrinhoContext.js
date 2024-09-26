@@ -38,10 +38,29 @@ export const useCarrinhoContext = () => {
       }
     });
   }
+
+  function removerProdutoCarrinho(id) {
+    setCarrinho((itensCarrinho) => {
+      const itemExiste = itensCarrinho.find((item) => item.id === id);
+      if (itemExiste) {
+        return itensCarrinho.filter((item) => item.id !== id);
+      }
+    });
+  }
+
+  function somaValorTotalCarrinho() {
+    return carrinho.reduce(
+      (acc, item) => acc + item.preco * item.quantidade,
+      0
+    );
+  }
+
   return {
     carrinho,
     setCarrinho,
     adicionarProduto,
     removerProduto,
+    removerProdutoCarrinho,
+    somaValorTotalCarrinho,
   };
 };

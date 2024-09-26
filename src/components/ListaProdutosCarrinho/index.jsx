@@ -6,7 +6,8 @@ import { useCarrinhoContext } from "../../hooks/useCarrinhoContext";
 
 const ListaProdutosCarrinho = () => {
   const location = useLocation();
-  const { carrinho, adicionarProduto, removerProduto } = useCarrinhoContext();
+  const { carrinho, adicionarProduto, removerProduto, removerProdutoCarrinho } =
+    useCarrinhoContext();
 
   return (
     <ul className="list-unstyled">
@@ -15,13 +16,20 @@ const ListaProdutosCarrinho = () => {
       ) : (
         carrinho.map((itemCarrinho) => {
           return location.pathname === "/carrinho" ? (
-            <ItemCarrinho key={itemCarrinho.id} itemCarrinho={itemCarrinho} />
+            <ItemCarrinho
+              key={itemCarrinho.id}
+              itemCarrinho={itemCarrinho}
+              adicionarProduto={adicionarProduto}
+              removerProduto={removerProduto}
+              removerProdutoCarrinho={removerProdutoCarrinho}
+            />
           ) : (
             <ItemCarrinhoSuspenso
               key={itemCarrinho.id}
               itemCarrinho={itemCarrinho}
               adicionarProduto={adicionarProduto}
               removerProduto={removerProduto}
+              removerProdutoCarrinho={removerProdutoCarrinho}
             />
           );
         })
